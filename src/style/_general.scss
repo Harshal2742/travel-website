@@ -1,0 +1,51 @@
+@use './colors' as *;
+
+.container{
+  margin: 0 auto;
+  width: 120rem;
+}
+
+.heading {
+  font-weight: 700;
+  color: $gray-4;
+	&-primary {
+    @extend .heading;
+    line-height: 1.2;
+		font-size: 6.4rem;
+	}
+  
+  &-secondary{
+    @extend .heading;
+    line-height: 1.2;
+    font-size: 3.6rem;
+  }
+}
+
+.btn {
+	padding: 0.8rem 2.8rem;
+	border: none;
+	font-weight: 700;
+	font-size: 1.6rem;
+	border-radius: 0.4rem;
+	border: 2px solid $primary;
+	transition: all 0.3s;
+	cursor: pointer;
+
+	&-outlined {
+		@extend .btn;
+		background: transparent;
+		color: $gray-1;
+	}
+
+	&-filled {
+		@extend .btn;
+		color: $gray-1;
+		background-color: $primary;
+	}
+
+	&:hover {
+		color: $gray-1;
+		background-color: $primary-s1;
+		border-color: $primary-s1;
+	}
+}
