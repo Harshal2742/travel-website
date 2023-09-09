@@ -1,0 +1,21 @@
+@use '../../colors' as *;
+
+.tour-card {
+	box-shadow: 0 1rem 1rem $gray-2;
+	border-radius: 0.8rem;
+	overflow: hidden;
+}
+
+.tour-card-img {
+	width: 100%;
+	object-fit: cover;
+	clip-path: polygon(0% 0%,
+                    100% 0%,
+                    100% 70%,
+                    0% 90%);
+}
+
+.tour-card-text-box {
+	padding: 0.8rem;
+  transform: translateY(-40px);
+}
