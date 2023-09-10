@@ -1,0 +1,17 @@
+.featured-in-section {
+  margin-bottom: 4.8rem;
+}
+
+.logos-box {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+  gap: 4.8rem;
+  // justify-content: center;
+  width: 100%;
+  align-items: center;
+}
+
+.featured-in-logo {
+	width: 100%;
+  // filter:;
+}
