@@ -18,7 +18,7 @@ const PopularDestinations = (): JSX.Element => {
 	return (
 		<section className="popular-destinations">
 			<div className="container">
-				<h2 className="heading-secondary">Our Popular Destinations</h2>
+				<h2 className="heading-secondary">Popular Destinations</h2>
 				<div className="tours-box">
 					{topTours?.slice(0, 3).map((tour) => {
 						return <TourCard {...tour} key={tour.id} />;

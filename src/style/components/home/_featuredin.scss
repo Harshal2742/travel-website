@@ -1,17 +1,21 @@
+@use "../../colors" as *;
+
 .featured-in-section {
-  margin-bottom: 4.8rem;
+  margin-bottom: 2.8rem;
+  background-color: $gray-1;
+  padding: 6.4rem 0;
 }
 
 .logos-box {
-	display: grid;
+  display: grid;
 	grid-template-columns: repeat(5, 1fr);
   gap: 4.8rem;
   // justify-content: center;
   width: 100%;
+  padding: 0 6.4rem;
   align-items: center;
 }
 
 .featured-in-logo {
 	width: 100%;
-  // filter:;
 }
