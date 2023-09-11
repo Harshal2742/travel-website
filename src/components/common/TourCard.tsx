@@ -1,9 +1,8 @@
 import { Tour } from '../../api/api.interface';
-import { IoMdStarOutline } from 'react-icons/io';
 
 type TourCardType = Pick<
 	Tour,
-	'id' | 'imageCover' | 'name' | 'ratingsAverage' | 'price'
+	'id' | 'imageCover' | 'name' | 'ratingsAverage' | 'price' | 'ratingsQuantity'
 >;
 
 const TourCard = (tour: TourCardType): JSX.Element => {
@@ -21,23 +20,16 @@ const TourCard = (tour: TourCardType): JSX.Element => {
 			</div>
 			<div className="tour-card-text-box">
 				<div>
-					{Array(5)
-						.fill(0)
-						.map((_, index) => {
-							return (
-								<IoMdStarOutline
-									key={index}
-									className={
-										index < tour.ratingsAverage
-											? 'star-filled'
-											: 'star-outlined'
-									}
-								/>
-							);
-						})}
+					<p className='tour-card-rating'>
+						{<span>{tour.ratingsAverage}</span>}
+						{`
+						rating 
+						(${tour.ratingsQuantity})
+						`}
+					</p>
 				</div>
-				<div className="tour-card-price-box">
-					<p>
+				<div>
+					<p className="tour-card-price">
 						<span>{`$${tour.price}`}</span> per person
 					</p>
 				</div>

@@ -5,6 +5,9 @@
 @use './components/home/populardestinations';
 @use './components/home/featuredin';
 @use './components/home/services';
+@use './components/home/testimonials';
+@use './components/common/reviewcard';
+
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
 * {

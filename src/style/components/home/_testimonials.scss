@@ -1,0 +1,26 @@
+@use '../../colors' as *;
+
+.testimonials-section {
+	background-color: $primary-t4;
+}
+
+.testimonials-container{
+  padding: 4.8rem 0rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.testimonials-heading {
+	margin-bottom: 1.2rem;
+}
+
+.testimonials-text{
+  font-size: 1.6rem;
+  margin-bottom: 4.8rem;
+}
+
+
+
+
+

@@ -1,14 +1,14 @@
 @use '../../colors' as *;
 
 .tour-card {
-	box-shadow: 0 1rem 1rem $gray-2;
+	box-shadow: 0 1rem 1rem rgba($color: $gray-4, $alpha: 0.2);
 	border-radius: 0.8rem;
 	overflow: hidden;
 	cursor: pointer;
 	transition: all 0.3s;
 
-	&:hover{
-		box-shadow: 0 1rem 1rem $gray-3;
+	&:hover {
+		box-shadow: 0.2rem 1rem 1rem rgba($color: $gray-4, $alpha: 0.3);
 		transform: scale(1.01);
 	}
 }
@@ -32,40 +32,25 @@
 	span {
 		padding: 0.4rem 1.2rem;
 		line-height: 1;
-		background-image: linear-gradient($primary-s2, $primary-t1);
+		background-color: $primary;
 		-webkit-box-decoration-break: clone;
 		box-decoration-break: clone;
 	}
 }
 
 .tour-card-text-box {
-	padding: 0.8rem 1.2rem;
+	padding: 1.8rem;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 }
 
-.star {
-	font-size: 2.4rem;
-	&-filled {
-		@extend .star;
-		color: $primary-t1;
-	}
-
-	&-outlined {
-		@extend .star;
-		color: $gray-3;
-	}
-}
-
-.tour-card-price-box{
-	span{
+.tour-card-price,
+.tour-card-rating {
+	font-size: 1.4rem;
+	span {
+		font-size: 1.6rem;
 		color: $gray-4;
-		font-size: 1.8rem;
 		font-weight: 700;
-	}
-
-	p{
-		font-size: 1.4rem;
 	}
 }

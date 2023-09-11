@@ -1,13 +1,46 @@
+@use '../../colors' as *;
+
 .services-section {
-  margin-bottom: 9.6rem;
+	margin-bottom: 9.6rem;
 }
 
-.services-img{
-  width: 100%;
+.services-img {
+	grid-row: span 2;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 0.8rem;
 }
 
-.services-text{
+.services-text {
+	font-size: 1.6rem;
+	line-height: 1.4;
+	margin-bottom: 2.8rem;
+}
+
+.services-card {
+	// background-color: $primary-t4;
+	padding: 1.2rem;
+	border: 2px solid $primary-t1;
+	border-radius: 0.8rem;
+}
+
+
+.service-icon{
   font-size: 1.6rem;
-  line-height: 1.4;
-  margin-bottom: 2.8rem;
+  color: $gray-4;
+  margin-bottom: 0.4rem;
+}
+
+
+.service-title {
+	font-size: 1.6rem;
+	line-height: 1.4;
+	font-weight: 500;
+	margin-bottom: 1.6rem;
+	color: $primary-t1;
+}
+
+.service-description {
+	font-size: 1.6rem;
 }
