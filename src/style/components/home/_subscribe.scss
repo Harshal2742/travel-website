@@ -1,0 +1,44 @@
+@use '../../colors' as *;
+
+.subscribe-section {
+	margin-bottom: 9.6rem;
+}
+
+.subscribe-card {
+	padding: 6.4rem 12.8rem;
+	background-color: $primary-t2;
+	border-radius: 0.8rem;
+}
+
+.subscribe-heading {
+	color: $primary-s4;
+	text-align: center;
+	margin-bottom: 1.6rem;
+}
+
+.subscribe-text {
+	font-size: 1.6rem;
+	line-height: 1.4;
+	color: $primary-s4;
+	text-align: center;
+	margin-bottom: 2.8rem;
+}
+
+.subscribe-form {
+	display: flex;
+	justify-content: center;
+	gap: 1.2rem;
+
+	.email-input {
+		width: 32rem;
+		outline: none;
+		border: none;
+		padding: 0.8rem 1.2rem;
+		border-radius: 0.4rem;
+		font-size: 1.6rem;
+		line-height: 1.4;
+		&::placeholder {
+			font-weight: 500;
+		}
+	}
+}
