@@ -15,10 +15,12 @@
 
 .img-title-box {
 	position: relative;
+	height: 24rem;
 }
 
 .tour-card-img {
 	width: 100%;
+	height: 100%;
 	object-fit: cover;
 	clip-path: polygon(0% 0%, 100% 0%, 100% 70%, 0% 90%);
 }

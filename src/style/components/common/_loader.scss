@@ -1,0 +1,62 @@
+@use '../../colors' as *;
+
+.loader-box {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.loader {
+	background-color: $primary;
+	display: inline-block;
+	position: relative;
+	width: 0.8rem;
+	height: 0.8rem;
+	border-radius: 50%;
+	animation: 1s infinite alternate loader-animation-1 linear;
+	animation-delay: -0.66s;
+	&::before {
+		content: '';
+		left: -2.8rem;
+		border-radius: 50%;
+		width: 0.8rem;
+		height: 0.8rem;
+		position: absolute;
+		background-color: $primary-t2;
+		animation: 1s infinite alternate loader-animation-2 linear;
+		animation-delay: -0.33s;
+	}
+
+	&::after {
+		content: '';
+		position: absolute;
+		right: -2.8rem;
+		border-radius: 50%;
+		width: 0.8rem;
+		height: 0.8rem;
+		background-color: $primary-t2;
+		animation: 1s infinite alternate loader-animation-2 linear;
+		animation-delay: -0.99s;
+	}
+}
+
+@keyframes loader-animation-1 {
+	from {
+		box-shadow: 0 0 0 0.6rem $primary;
+	}
+
+	to {
+		box-shadow: 0 0 0 0 $primary;
+	}
+}
+
+@keyframes loader-animation-2 {
+	from {
+		box-shadow: 0 0 0 0.6rem $primary-t2;
+	}
+
+	to {
+		box-shadow: 0 0 0 0 $primary-t2;
+	}
+}

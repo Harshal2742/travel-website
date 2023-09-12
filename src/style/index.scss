@@ -9,6 +9,10 @@
 @use './components/common/reviewcard';
 @use './components/home/features';
 @use './components/home/subscribe';
+@use './components/footer';
+@use './components/alltours';
+@use './components/common/loader';
+
 @use './colors' as *;
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
@@ -28,4 +32,9 @@ body {
 	font-weight: 400;
 	position: relative;
 	color: $gray-4;
+}
+
+main {
+	position: relative;
+	min-height: 100vh;
 }

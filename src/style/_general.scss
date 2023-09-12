@@ -44,6 +44,10 @@
 		@extend .grid;
 		grid-template-columns: repeat(4, 1fr);
 	}
+	&-5-col {
+		@extend .grid;
+		grid-template-columns: repeat(5, 1fr);
+	}
 }
 
 .btn {
@@ -69,8 +73,14 @@
 	}
 
 	&:hover {
-		color: $gray-1;
+		color: $gray-1 !important;
 		background-color: $primary-s1;
 		border-color: $primary-s1;
+	}
+}
+
+.make-visible .btn{
+	&-outlined {
+		color: $primary;
 	}
 }

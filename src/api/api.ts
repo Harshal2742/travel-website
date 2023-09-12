@@ -1,5 +1,5 @@
 import axios from "axios"
-import { ApiResult } from "./api.interface";
+import { ApiResult, Tour } from "./api.interface";
 import { TopTours } from "./api.type";
 
 type GetApiDataType = {
@@ -23,14 +23,20 @@ function getApiData<Type>({ url, method, data }: GetApiDataType): Promise<Type> 
 }
 
 // API call to get top tours
-
 export const getTopTours = async () => {
 
   const result = await getApiData<ApiResult<TopTours>>({
     url: "/tours/top-5-cheap"
   })
 
+  return result;
+}
 
+// API call to get all tours
+export const getAllTours = async () => {
+  const result = await getApiData<ApiResult<Tour[]>>({
+    url: "/tours/"
+  })
 
   return result;
 }

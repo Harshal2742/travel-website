@@ -1,16 +1,29 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
+
+enum NavigationPath {
+	Home = '/',
+	AllTours = '/all-tours',
+	Blogs = '/blogs',
+	Services = '/services',
+}
 
 const Header = () => {
+	const location = useLocation();
+
 	return (
-		<header className="header">
+		<header
+			className={`header ${
+				location.pathname != NavigationPath.Home && 'make-visible'
+			}`}
+		>
 			<div>
-				<h1 className='header-logo'>Travelling</h1>
+				<h1 className="header-logo">Travelling</h1>
 			</div>
 			<nav>
-				<ul className="navlist">
+				<ul className={'navlist'}>
 					<li>
 						<NavLink
-							to={'/'}
+							to={NavigationPath.Home}
 							className={({ isActive }) => {
 								return isActive ? 'navlink-active' : 'navlink-pending';
 							}}
@@ -20,7 +33,7 @@ const Header = () => {
 					</li>
 					<li>
 						<NavLink
-							to={'/all-tours'}
+							to={NavigationPath.AllTours}
 							className={({ isActive }) => {
 								return isActive ? 'navlink-active' : 'navlink-pending';
 							}}
@@ -30,7 +43,7 @@ const Header = () => {
 					</li>
 					<li>
 						<NavLink
-							to={'/blog'}
+							to={NavigationPath.Blogs}
 							className={({ isActive }) => {
 								return isActive ? 'navlink-active' : 'navlink-pending';
 							}}
@@ -40,7 +53,7 @@ const Header = () => {
 					</li>
 					<li>
 						<NavLink
-							to={'/services'}
+							to={NavigationPath.Services}
 							className={({ isActive }) => {
 								return isActive ? 'navlink-active' : 'navlink-pending';
 							}}
@@ -50,9 +63,9 @@ const Header = () => {
 					</li>
 				</ul>
 			</nav>
-			<div className='btn-box'>
-				<button className='btn-outlined'>Login</button>
-				<button className='btn-filled'>Sign up</button>
+			<div className="btn-box">
+				<button className="btn-outlined">Login</button>
+				<button className="btn-filled">Sign up</button>
 			</div>
 		</header>
 	);
