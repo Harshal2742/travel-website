@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Tour } from '../api/api.interface';
 import { getAllTours } from '../api/api';
-import TourCard from './common/TourCard';
-import Loader from './common/Loader';
+import TourCard from '../components/common/TourCard';
+import Loader from '../components/common/Loader';
 
 const AllTours = (): JSX.Element => {
 	const [tours, setTours] = useState<Tour[] | undefined>();

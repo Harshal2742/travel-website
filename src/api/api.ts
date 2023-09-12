@@ -40,3 +40,12 @@ export const getAllTours = async () => {
 
   return result;
 }
+
+//
+export const getTour = async (tourId: string) => {
+  const result = await getApiData<ApiResult<Tour>>({
+    url: `/tours/${tourId}`
+  })
+
+  return result;
+}

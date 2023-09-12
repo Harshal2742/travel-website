@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { Tour } from '../../api/api.interface';
 
 type TourCardType = Pick<
@@ -6,8 +7,15 @@ type TourCardType = Pick<
 >;
 
 const TourCard = (tour: TourCardType): JSX.Element => {
+	const navigation = useNavigate();
+
 	return (
-		<div className="tour-card">
+		<div
+			className="tour-card"
+			onClick={() => {
+				navigation(`/tour/${tour.id}`);
+			}}
+		>
 			<div className="img-title-box">
 				<img
 					className="tour-card-img"
@@ -20,7 +28,7 @@ const TourCard = (tour: TourCardType): JSX.Element => {
 			</div>
 			<div className="tour-card-text-box">
 				<div>
-					<p className='tour-card-rating'>
+					<p className="tour-card-rating">
 						{<span>{tour.ratingsAverage}</span>}
 						{`
 						rating 
