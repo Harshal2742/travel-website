@@ -1,34 +1,213 @@
 @use '../colors' as *;
 
 .tour-container {
-	width: calc(100vw - 10rem);
 	margin: 0 auto;
-  padding: 6.4rem 0 0 0;
+	padding: 6.4rem 0;
 }
 
 .tour-section-header {
-  position: relative;
-	clip-path: polygon(0% 0%, 100% 0%, 100% 53%, 0% 66%);
-  height: 62vw;
+	position: relative;
+	clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 0% 98%);
+	height: 42vw;
 }
 
-.cover-img-overlay {
-  top: 0;
-  left: 0;
+.tour-header-content {
 	position: absolute;
-	width: 100%;
-	height: 100%;
-	background-image: linear-gradient( to right,
-		rgba($color: $primary, $alpha: 1),
-		rgba($color: $primary-s2, $alpha: 1)
-	);
-  opacity: 0.85;
+	top: 35%;
+	left: 50%;
+	bottom: 13vw;
+	transform: translate(-50%, -50%);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 2.8rem;
 }
 
 .tour-cover-img {
-  object-fit: cover;
-  height: 100%;
-  width: 100%;
-  -o-object-position: 50% 25%;
-  object-position: 50% 25%;
+	object-fit: cover;
+	height: 100%;
+	width: 100%;
+	-o-object-position: 50% 25%;
+	object-position: 50% 25%;
+	filter: brightness(90%);
+	opacity: 0.9;
+}
+
+.tour-title {
+	font-size: 6.4rem;
+	line-height: 1.2;
+	color: $primary-t4;
+	text-transform: uppercase;
+	font-weight: 400;
+	text-align: center;
+	width: 70%;
+	span {
+		padding: 0.4rem 1.2rem;
+		-webkit-box-decoration-break: clone;
+		box-decoration-break: clone;
+		background-image: linear-gradient(
+			rgba($color: $primary, $alpha: 1),
+			rgba($color: $primary-s2, $alpha: 1)
+		);
+	}
+}
+
+.location-time-box {
+	display: flex;
+	align-items: center;
+	gap: 3.6rem;
+}
+
+.tour-duration {
+	display: flex;
+	gap: 1rem;
+	align-items: center;
+	color: $gray-4;
+
+	.clock-logo {
+		font-size: 2.4rem;
+	}
+
+	span {
+		font-size: 1.6rem;
+	}
+}
+
+.tour-location {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	color: $gray-4;
+
+	.location-logo {
+		font-size: 2.4rem;
+	}
+
+	span {
+		font-size: 1.6rem;
+	}
+}
+
+.tour-description-section {
+	display: flex;
+	margin-top: -9.6rem;
+}
+
+.tour-desciption-title {
+	font-size: 2.4rem;
+	text-transform: uppercase;
+	font-weight: 500;
+	margin-bottom: 3.2rem;
+}
+
+.tour-details {
+	flex: 1;
+	background-color: $gray-1;
+	padding: 12.8rem 8vw;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 6.4rem;
+}
+
+.quick-fact {
+	display: flex;
+	align-items: center;
+	gap: 1.2rem;
+	margin-bottom: 1.2rem;
+
+	&-icon {
+		font-size: 2.4rem;
+		line-height: 1.4;
+		color: $primary-t1;
+	}
+
+	&-title {
+		font-size: 1.6rem;
+		line-height: 1.4;
+		font-weight: 500;
+	}
+
+	&-data {
+		margin-left: 1.2rem;
+		font-size: 1.4rem;
+		line-height: 1.2;
+		font-weight: 300;
+	}
+}
+
+.about-tour {
+	flex: 1;
+	padding: 12.8rem 8vw;
+}
+
+.about-tour-text {
+	font-size: 1.6rem;
+	line-height: 1.4;
+}
+
+.tour-guide-img {
+	width: 3.6rem;
+	border-radius: 50%;
+	object-fit: cover;
+}
+
+.guide {
+	display: flex;
+	align-items: center;
+	gap: 1.2rem;
+	margin-bottom: 1.2rem;
+
+	&-role {
+		font-size: 1.6rem;
+		line-height: 1.4;
+		font-weight: 500;
+		text-transform: uppercase;
+	}
+
+	&-name {
+		margin-left: 1.2rem;
+		font-size: 1.4rem;
+		line-height: 1.2;
+		font-weight: 300;
+	}
+}
+
+.tour-images-section {
+	margin-top: -8vw;
+	display: flex;
+	clip-path: polygon(0% 100%, 100% 70%, 100% 0%, 0% 30%);
+	position: relative;
+	z-index: 999;
+}
+
+.tour-img-box {
+	&:first-child {
+		margin-top: 6.4rem;
+	}
+}
+.tour-img {
+	// display: block;
+	width: 100%;
+	height: 110%;
+	object-fit: cover;
+}
+
+.review-section {
+	background-image: linear-gradient(
+		to top right,
+		rgba($color: $primary-t1, $alpha: 1),
+		rgba($color: $primary-s3, $alpha: 1)
+	);
+	margin-top: -8vw;
+	padding: 12.8rem 2.8rem;
+	clip-path: polygon(0% 85%, 100% 70%, 100% 0%, 0% 0%);
+}
+
+.review-container {
+	display: flex;
+	gap: 3.6rem;
+	overflow-x: scroll;
+	padding: 2.8rem 0;
+	margin: 6.4rem 0 14.4rem 0;
 }
