@@ -129,6 +129,37 @@ const TourPage = (): JSX.Element => {
 								})}
 							</div>
 						</section>
+						<section className="book-tour-section">
+							<div className="book-tour-card">
+								<div className="book-tour-img-box">
+									<img
+										className="book-tour-img-1"
+										src={
+											import.meta.env.VITE_TOUR_IMG_BASE_URL + tour.images[0]
+										}
+									/>
+									<img
+										className="book-tour-img-2"
+										src={
+											import.meta.env.VITE_TOUR_IMG_BASE_URL + tour.images[1]
+										}
+									/>
+									<img
+										className="book-tour-img-3"
+										src={
+											import.meta.env.VITE_TOUR_IMG_BASE_URL + tour.images[2]
+										}
+									/>
+								</div>
+								<div>
+									<p className="heading-tertiary">WHAT ARE YOU WAITING FOR?</p>
+									<p className="book-tour-text">{`${tour.duration} days. 1 adventure. Infinite memories. Make it yours today!`}</p>
+								</div>
+								<div className='book-tout-btn-box'>
+									<button className='btn-filled book-tour-btn'>Login to book tour</button>
+								</div>
+							</div>
+						</section>
 					</>
 				) : (
 					<Loader />

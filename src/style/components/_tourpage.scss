@@ -1,8 +1,8 @@
 @use '../colors' as *;
 
 .tour-container {
-	margin: 0 auto;
-	padding: 6.4rem 0;
+	width: 100%;
+	padding: 6.4rem 0 0 0;
 }
 
 .tour-section-header {
@@ -210,4 +210,71 @@
 	overflow-x: scroll;
 	padding: 2.8rem 0;
 	margin: 6.4rem 0 14.4rem 0;
+}
+
+.book-tour-section {
+	padding: 14.4rem 0 4.8rem 0;
+	margin-top: -28rem;
+	background-color: $gray-1;
+}
+
+.book-tour-card {
+	box-shadow: 0 0 1rem 1rem rgba($color: $gray-4, $alpha: 0.1);
+	position: relative;
+	max-width: 105rem;
+	padding: 4.8rem 0;
+	padding-right: 3.6rem;
+	margin: 4.8rem auto;
+	border-radius: 2rem;
+	overflow: hidden;
+	background-color: white;
+	display: flex;
+	align-items: center;
+}
+
+.book-tour-img-box {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	padding: 6.4rem 12.8rem;
+}
+
+.book-tour-img {
+	width: 15rem;
+	height: 15rem;
+	border-radius: 50%;
+	position: absolute;
+	top: 50%;
+	left: 0;
+	&-1 {
+		@extend .book-tour-img;
+		z-index: 10;
+		transform: translate(-25%, -50%);
+	}
+	&-2 {
+		@extend .book-tour-img;
+		transform: translate(0%, -50%) scale(0.98);
+		z-index: 9;
+	}
+	&-3 {
+		@extend .book-tour-img;
+		transform: translate(25%, -50%) scale(0.95);
+		z-index: 8;
+	}
+}
+
+.book-tour-text {
+	margin-top: 1.2rem;
+	font-size: 1.8rem;
+}
+
+.book-tout-btn-box {
+	margin-left: auto;
+}
+
+.book-tour-btn {
+	border-radius: 999px;
+	text-transform: uppercase;
+	padding: 1.6rem 2.8rem;
 }
