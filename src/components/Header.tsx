@@ -1,4 +1,6 @@
 import { NavLink, useLocation } from 'react-router-dom';
+import { useAppDispatch } from '../store/store';
+import { toggleModal } from '../store/auth-slice';
 
 enum NavigationPath {
 	Home = '/',
@@ -9,6 +11,7 @@ enum NavigationPath {
 
 const Header = () => {
 	const location = useLocation();
+	const dispatch = useAppDispatch();
 
 	return (
 		<header
@@ -64,8 +67,18 @@ const Header = () => {
 				</ul>
 			</nav>
 			<div className="btn-box">
-				<button className="btn-outlined">Login</button>
-				<button className="btn-filled">Sign up</button>
+				<button
+					className="btn-outlined"
+					onClick={() => dispatch(toggleModal({ showLoginModal: true }))}
+				>
+					Login
+				</button>
+				<button
+					className="btn-filled"
+					onClick={() => dispatch(toggleModal({ showLoginModal: false }))}
+				>
+					Sign up
+				</button>
 			</div>
 		</header>
 	);

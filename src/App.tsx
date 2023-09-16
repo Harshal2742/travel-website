@@ -4,10 +4,14 @@ import Home from './pages/Home';
 import Footer from './components/Footer';
 import AllTours from './pages/AllTours';
 import Tour from './pages/TourPage';
+import Auth from './components/Auth';
+import { useAppSelector } from './store/store';
 
 function App() {
+	const showAuthModal = useAppSelector((state) => state.auth.showModal);
 	return (
 		<>
+			{showAuthModal && <Auth />}
 			<Header />
 			<main>
 				<Routes>
