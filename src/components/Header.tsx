@@ -1,5 +1,10 @@
-import { NavLink, useLocation } from 'react-router-dom';
-import { useAppDispatch } from '../store/store';
+import {
+	NavLink,
+	useLocation,
+	useNavigate,
+	useNavigation,
+} from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../store/store';
 import { toggleModal } from '../store/auth-slice';
 
 enum NavigationPath {
@@ -12,6 +17,10 @@ enum NavigationPath {
 const Header = () => {
 	const location = useLocation();
 	const dispatch = useAppDispatch();
+	const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
+	const currentUser = useAppSelector((state) => state.auth.currentUser);
+
+	const navigation = useNavigate();
 
 	return (
 		<header
@@ -66,20 +75,30 @@ const Header = () => {
 					</li>
 				</ul>
 			</nav>
-			<div className="btn-box">
-				<button
-					className="btn-outlined"
-					onClick={() => dispatch(toggleModal({ showLoginModal: true }))}
-				>
-					Login
-				</button>
-				<button
-					className="btn-filled"
-					onClick={() => dispatch(toggleModal({ showLoginModal: false }))}
-				>
-					Sign up
-				</button>
-			</div>
+			{!isLoggedIn ? (
+				<div className="btn-box">
+					<button
+						className="btn-outlined"
+						onClick={() => dispatch(toggleModal({ showLoginModal: true }))}
+					>
+						Login
+					</button>
+					<button
+						className="btn-filled"
+						onClick={() => dispatch(toggleModal({ showLoginModal: false }))}
+					>
+						Sign up
+					</button>
+				</div>
+			) : (
+				<div className="user-profile-box">
+					<img
+						className="current-user-img"
+						src={import.meta.env.VITE_USER_IMG_BASE_URL + currentUser?.photo}
+					/>
+					<p className="current-user-name">{currentUser?.name}</p>
+				</div>
+			)}
 		</header>
 	);
 };

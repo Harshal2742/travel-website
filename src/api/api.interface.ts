@@ -1,9 +1,12 @@
 
 export interface ApiResult<T> {
-  status: 'success' | 'fail';
+  status: 'success' | 'fail' | 'error';
   data?: T;
   error?: Error;
   message?: string;
+
+  // Added temprory to use token. NOT secure. We have to use cookies
+  token?: string;
 }
 
 export interface Error {
@@ -75,4 +78,18 @@ export interface StartLocation {
   coordinates: number[];
   address: string;
   description: string;
+}
+
+export interface SignInApiData {
+  email: string,
+  password: string
+}
+
+
+export interface CurrentUser {
+  _id: string;
+  name: string;
+  photo: string;
+  email: string;
+  __v: number;
 }

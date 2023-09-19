@@ -1,18 +1,20 @@
-import axios from "axios"
-import { ApiResult, Tour } from "./api.interface";
+import axios, { AxiosHeaders, AxiosRequestHeaders, RawAxiosResponseHeaders } from "axios"
+import { ApiResult, CurrentUser, SignInApiData, Tour } from "./api.interface";
 import { TopTours } from "./api.type";
 
 type GetApiDataType = {
   method?: string,
   url: string,
   data?: string
+  headers?: AxiosRequestHeaders | AxiosHeaders | RawAxiosResponseHeaders
+  withCredentials?: boolean
 }
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
-function getApiData<Type>({ url, method, data }: GetApiDataType): Promise<Type> {
+function getApiData<Type>({ url, method, data, headers, withCredentials }: GetApiDataType): Promise<Type> {
 
-  return axios({ baseURL: BASE_URL, url: url, data: data, method: method }).then((result) => {
+  return axios({ baseURL: BASE_URL, url: url, data: data, method: method, headers: headers, withCredentials: withCredentials }).then((result) => {
     return result.data;
   }).catch((error) => {
 
@@ -24,6 +26,7 @@ function getApiData<Type>({ url, method, data }: GetApiDataType): Promise<Type> 
 
 // API call to get top tours
 export const getTopTours = async () => {
+
 
   const result = await getApiData<ApiResult<TopTours>>({
     url: "/tours/top-5-cheap"
@@ -41,7 +44,7 @@ export const getAllTours = async () => {
   return result;
 }
 
-//
+// API call to get tour with ID
 export const getTour = async (tourId: string) => {
   const result = await getApiData<ApiResult<Tour>>({
     url: `/tours/${tourId}`
@@ -49,3 +52,31 @@ export const getTour = async (tourId: string) => {
 
   return result;
 }
+
+// API call to signin
+export const signIn = async (data: SignInApiData) => {
+  const result = await getApiData<ApiResult<CurrentUser>>({
+    url: '/users/signin',
+    data: JSON.stringify(data),
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    }
+  })
+  return result
+}
+
+// API call to get current user data
+export const getCurrentUser = async () => {
+
+  const result = await getApiData<ApiResult<CurrentUser>>({
+    url: "users/me",
+    withCredentials: true,
+    headers: {
+      "Authorization": `Bearer ${localStorage.getItem("travel-token")}`
+    }
+  })
+  return result
+}
+
+

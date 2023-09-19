@@ -1,0 +1,19 @@
+@use '../../colors' as *;
+
+.profile-section {
+	padding: 8rem;
+}
+
+.profile-navigation-menu {
+	background-image: linear-gradient(
+		to right,
+		rgba($color: $primary, $alpha: 0.8),
+		$primary-s1
+	);
+	min-height: 90vh;
+	padding: 4.8rem;
+}
+
+.profile-page {
+	grid-column: 2/-1;
+}

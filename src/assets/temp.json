@@ -1,10 +1,11 @@
 {
-  "status": "fail",
-  "error": {
-      "statusCode": 404,
-      "status": "fail",
-      "isOperational": true
-  },
-  "message": "No document found with that ID",
-  "stack": "Error: No document found with that ID\n    at D:\\NodeJS\\Natours\\controllers\\handlerFactory.js:53:19\n    at processTicksAndRejections (node:internal/process/task_queues:96:5)"
+	"data": {
+		"user": {
+			"_id": "5c8a1dfa2f8fb814b56fa181",
+			"name": "Lourdes Browning",
+			"photo": "user-2.jpg",
+			"email": "loulou@example.com",
+			"__v": 0
+		}
+	}
 }

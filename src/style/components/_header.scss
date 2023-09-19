@@ -13,8 +13,8 @@
 	width: 100%;
 }
 
-.header-logo{
-  color: $primary;
+.header-logo {
+	color: $primary;
 }
 
 .navlist {
@@ -46,24 +46,55 @@
 	}
 }
 
-.make-visible .navlink {
-	text-decoration: none;
-	font-weight: 700;
-	transition: all 0.3s;
-	border-bottom: 2px solid transparent;
+.user-profile-box {
+	display: flex;
+	gap: 1.2rem;
+	align-items: center;
+	cursor: pointer;
+	transition: all 0.2s;
 
-	&-active {
-		@extend .navlink;
-		color: $gray-4;
-		border-bottom: 2px solid $gray-4;
+	.current-user-img {
+		width: 3.6rem;
+		object-fit: cover;
+		border-radius: 50%;
 	}
 
-	&-pending {
-		@extend .navlink;
-		color: $gray-3;
+	.current-user-name {
+		font-size: 1.6rem;
+		line-height: 1.4;
+		color: $gray-1;
+		font-weight: 500;
 	}
 
-	&:hover {
+	&:hover{
+		transform: translateY(-1px);
+	}
+}
+
+.make-visible {
+	.navlink {
+		text-decoration: none;
+		font-weight: 700;
+		transition: all 0.3s;
+		border-bottom: 2px solid transparent;
+
+		&-active {
+			@extend .navlink;
+			color: $gray-4;
+			border-bottom: 2px solid $gray-4;
+		}
+
+		&-pending {
+			@extend .navlink;
+			color: $gray-3;
+		}
+
+		&:hover {
+			color: $gray-4;
+		}
+	}
+
+	.current-user-name {
 		color: $gray-4;
 	}
 }
