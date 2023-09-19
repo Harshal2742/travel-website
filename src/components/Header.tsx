@@ -91,7 +91,12 @@ const Header = () => {
 					</button>
 				</div>
 			) : (
-				<div className="user-profile-box">
+				<div
+					className="user-profile-box"
+					onClick={() => {
+						navigation('/me');
+					}}
+				>
 					<img
 						className="current-user-img"
 						src={import.meta.env.VITE_USER_IMG_BASE_URL + currentUser?.photo}

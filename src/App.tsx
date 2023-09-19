@@ -10,7 +10,10 @@ import { useEffect } from 'react';
 import { getCurrentUser } from './api/api';
 import { setCurrentUserLoginData } from './store/auth-slice';
 import Loader from './components/common/Loader';
-import ProfileSettings from './pages/ProfileSettings';
+import ProfileSettings from './components/profile/ProfileSettings';
+import Profile from './pages/Profile';
+import MyBookings from './components/profile/MyBookings';
+import MyReviews from './components/profile/MyReviews';
 
 function App() {
 	const showAuthModal = useAppSelector((state) => state.auth.showModal);
@@ -63,7 +66,11 @@ function App() {
 					<Route index element={<Home />} />
 					<Route path="/all-tours" element={<AllTours />} />
 					<Route path="/tour/:tourId" element={<Tour />} />
-					<Route path="/me" element={<ProfileSettings />} />
+					<Route path="/me" element={<Profile />}>
+						<Route index element={<ProfileSettings />} />
+						<Route path="my-bookings" element={<MyBookings />} />
+						<Route path="my-reviews" element={<MyReviews />} />
+					</Route>
 				</Routes>
 			</main>
 			<Footer />
