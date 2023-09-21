@@ -79,4 +79,17 @@ export const getCurrentUser = async () => {
   return result
 }
 
+// API call to update account settings
+export const updateAccountSettings = async (formData: FormData) => {
+  const result = await getApiData<CurrentUser>({
+    url: "users/updateMe",
+    withCredentials: true,
+    headers: {
+      "Authorization": `Bearer ${localStorage.getItem("travel-token")}`,
+      "Content-Type": "multipart/form-data"
+    }
+  })
+
+  return result
+}
 

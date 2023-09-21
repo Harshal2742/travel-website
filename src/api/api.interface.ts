@@ -91,5 +91,6 @@ export interface CurrentUser {
   name: string;
   photo: string;
   email: string;
+  role: 'user' | 'guide' | 'lead-guide' | 'admin';
   __v: number;
 }
