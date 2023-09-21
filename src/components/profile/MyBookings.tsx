@@ -20,14 +20,14 @@ const MyBookings = (): JSX.Element => {
 		<section>
 			{tours ? (
 				<>
-					{tours.length < 0 ? (
+					{tours.length > 0 ? (
 						<div className="grid-3-col">
 							{tours.map((tour) => {
 								return <TourCard key={tour.id} {...tour} />;
 							})}
 						</div>
 					) : (
-						<p className='heading-secondary'>No tours booked!</p>
+						<p className="heading-tertiary text-center">{'No tours booked!'}</p>
 					)}
 				</>
 			) : (
