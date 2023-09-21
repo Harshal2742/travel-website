@@ -1,5 +1,5 @@
 
-export interface ApiResult<T> {
+export interface ApiResult<T>{
   status: 'success' | 'fail' | 'error';
   data?: T;
   error?: Error;
@@ -93,4 +93,10 @@ export interface CurrentUser {
   email: string;
   role: 'user' | 'guide' | 'lead-guide' | 'admin';
   __v: number;
+}
+
+export interface PasswordUpdate {
+  passwordCurrent: string;
+  password: string;
+  passwordConfirm: string;
 }

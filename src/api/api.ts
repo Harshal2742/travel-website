@@ -1,11 +1,11 @@
 import axios, { AxiosHeaders, AxiosRequestHeaders, RawAxiosResponseHeaders } from "axios"
-import { ApiResult, CurrentUser, SignInApiData, Tour } from "./api.interface";
+import { ApiResult, CurrentUser, PasswordUpdate, SignInApiData, Tour } from "./api.interface";
 import { TopTours } from "./api.type";
 
 type GetApiDataType = {
   method?: string,
   url: string,
-  data?: string
+  data?: string | FormData;
   headers?: AxiosRequestHeaders | AxiosHeaders | RawAxiosResponseHeaders
   withCredentials?: boolean
 }
@@ -81,12 +81,55 @@ export const getCurrentUser = async () => {
 
 // API call to update account settings
 export const updateAccountSettings = async (formData: FormData) => {
-  const result = await getApiData<CurrentUser>({
+  const result = await getApiData<ApiResult<CurrentUser>>({
     url: "users/updateMe",
+    withCredentials: true,
+    data: formData,
+    headers: {
+      "Authorization": `Bearer ${localStorage.getItem("travel-token")}`,
+      'Content-Type': 'multipart/form-data'
+    },
+    method: "PATCH"
+  })
+
+  return result
+}
+
+export const updatePassword = async (data: PasswordUpdate) => {
+
+  const result = await getApiData<ApiResult<CurrentUser>>({
+    url: "users/updateMyPassword",
+    withCredentials: true,
+    data: JSON.stringify(data),
+    headers: {
+      "Authorization": `Bearer ${localStorage.getItem("travel-token")}`,
+      "Content-Type": "application/json",
+    },
+    method: "PATCH"
+  })
+
+  return result
+}
+
+export const logout = async () => {
+
+  const result = await getApiData<ApiResult<null>>({
+    url: "users/logout",
     withCredentials: true,
     headers: {
       "Authorization": `Bearer ${localStorage.getItem("travel-token")}`,
-      "Content-Type": "multipart/form-data"
+    }
+  })
+
+  return result
+}
+
+export const getMyTours = async () => {
+  const result = await getApiData<ApiResult<Tour[]>>({
+    url: 'bookings/my-tours',
+    withCredentials: true,
+    headers: {
+      "Authorization": `Bearer ${localStorage.getItem("travel-token")}`,
     }
   })
 

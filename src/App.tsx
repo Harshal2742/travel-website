@@ -55,7 +55,6 @@ function App() {
 	}, [isLoggedIn, currentUser, dispatch]);
 
 	const showLoader = isLoggedIn && currentUser == undefined;
-	console.log(isLoggedIn);
 
 	return !showLoader ? (
 		<>
@@ -66,11 +65,14 @@ function App() {
 					<Route index element={<Home />} />
 					<Route path="/all-tours" element={<AllTours />} />
 					<Route path="/tour/:tourId" element={<Tour />} />
-					<Route path="/me" element={<Profile />}>
-						<Route index element={<ProfileSettings />} />
-						<Route path="my-bookings" element={<MyBookings />} />
-						<Route path="my-reviews" element={<MyReviews />} />
-					</Route>
+
+					{isLoggedIn && (
+						<Route path="/me" element={<Profile />}>
+							<Route index element={<ProfileSettings />} />
+							<Route path="my-bookings" element={<MyBookings />} />
+							<Route path="my-reviews" element={<MyReviews />} />
+						</Route>
+					)}
 				</Routes>
 			</main>
 			<Footer />

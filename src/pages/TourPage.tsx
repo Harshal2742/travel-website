@@ -7,10 +7,12 @@ import { IoMdTime, IoMdCalendar, IoMdTrendingUp } from 'react-icons/io';
 import { IoPersonOutline, IoStarOutline } from 'react-icons/io5';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
 import ReviewCard from '../components/common/ReviewCard';
+import { useAppSelector } from '../store/store';
 
 const TourPage = (): JSX.Element => {
 	const { tourId } = useParams();
 	const [tour, setTour] = useState<Tour | undefined>();
+	const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
 
 	useEffect(() => {
 		if (tourId) {
@@ -155,8 +157,10 @@ const TourPage = (): JSX.Element => {
 									<p className="heading-tertiary">WHAT ARE YOU WAITING FOR?</p>
 									<p className="book-tour-text">{`${tour.duration} days. 1 adventure. Infinite memories. Make it yours today!`}</p>
 								</div>
-								<div className='book-tout-btn-box'>
-									<button className='btn-filled book-tour-btn'>Login to book tour</button>
+								<div className="book-tout-btn-box" >
+									<button className="btn-filled book-tour-btn">
+										{!isLoggedIn ? `Login to book tour` : 'Book Tour'}
+									</button>
 								</div>
 							</div>
 						</section>

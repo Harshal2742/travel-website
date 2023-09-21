@@ -58,4 +58,13 @@
 }
 
 .change-password-box {
+	margin-bottom: 4.8rem;
+	border-bottom: 2px solid $primary-t1;
+	padding-bottom: 4.8rem;
+}
+
+.logout-btn-box{
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }

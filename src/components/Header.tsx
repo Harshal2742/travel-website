@@ -101,7 +101,7 @@ const Header = () => {
 						className="current-user-img"
 						src={import.meta.env.VITE_USER_IMG_BASE_URL + currentUser?.photo}
 					/>
-					<p className="current-user-name">{currentUser?.name}</p>
+					<p className="current-user-name">{currentUser?.name.split(' ')[0]}</p>
 				</div>
 			)}
 		</header>
