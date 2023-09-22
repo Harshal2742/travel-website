@@ -14,6 +14,8 @@ import ProfileSettings from './components/profile/ProfileSettings';
 import Profile from './pages/Profile';
 import MyBookings from './components/profile/MyBookings';
 import MyReviews from './components/profile/MyReviews';
+import Notification from './components/common/Notification';
+import NotFound from './pages/NotFound';
 
 function App() {
 	const showAuthModal = useAppSelector((state) => state.auth.showModal);
@@ -21,6 +23,8 @@ function App() {
 
 	const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
 	const currentUser = useAppSelector((state) => state.auth.currentUser);
+	const showNotification = useAppSelector((state) => state.ui.showNotification);
+
 	useEffect(() => {
 		if (isLoggedIn && !currentUser) {
 			(async () => {
@@ -59,6 +63,7 @@ function App() {
 	return !showLoader ? (
 		<>
 			{showAuthModal && <Auth />}
+			{showNotification && <Notification />}
 			<Header />
 			<main>
 				<Routes>
@@ -73,6 +78,7 @@ function App() {
 							<Route path="my-reviews" element={<MyReviews />} />
 						</Route>
 					)}
+					<Route path="/*" element={<NotFound />} />
 				</Routes>
 			</main>
 			<Footer />

@@ -1,4 +1,4 @@
-import axios, { AxiosHeaders, AxiosRequestHeaders, RawAxiosResponseHeaders } from "axios"
+import axios, { AxiosError, AxiosHeaders, AxiosRequestHeaders, RawAxiosResponseHeaders } from "axios"
 import { ApiResult, CurrentUser, PasswordUpdate, SignInApiData, Tour } from "./api.interface";
 import { TopTours } from "./api.type";
 
@@ -16,11 +16,16 @@ function getApiData<Type>({ url, method, data, headers, withCredentials }: GetAp
 
   return axios({ baseURL: BASE_URL, url: url, data: data, method: method, headers: headers, withCredentials: withCredentials }).then((result) => {
     return result.data;
-  }).catch((error) => {
+  }).catch((error: AxiosError) => {
+    console.log(error.response)
 
-    // This will print error is regarding to the api call such as network error
-    console.log(error)
-    throw error;
+    const response: ApiResult<undefined> = error.response?.data as ApiResult<undefined>
+    const result: ApiResult<undefined> = {
+      status: response.status || "fail",
+      message: response.message,
+      error: response.error
+    }
+    return result;
   })
 }
 
@@ -28,7 +33,7 @@ function getApiData<Type>({ url, method, data, headers, withCredentials }: GetAp
 export const getTopTours = async () => {
 
 
-  const result = await getApiData<ApiResult<TopTours>>({
+  const result = await getApiData<ApiResult<TopTours | undefined>>({
     url: "/tours/top-5-cheap"
   })
 
@@ -55,7 +60,7 @@ export const getTour = async (tourId: string) => {
 
 // API call to signin
 export const signIn = async (data: SignInApiData) => {
-  const result = await getApiData<ApiResult<CurrentUser>>({
+  const result = await getApiData<ApiResult<CurrentUser | undefined>>({
     url: '/users/signin',
     data: JSON.stringify(data),
     method: "POST",
@@ -69,7 +74,7 @@ export const signIn = async (data: SignInApiData) => {
 // API call to get current user data
 export const getCurrentUser = async () => {
 
-  const result = await getApiData<ApiResult<CurrentUser>>({
+  const result = await getApiData<ApiResult<CurrentUser | undefined>>({
     url: "users/me",
     withCredentials: true,
     headers: {
@@ -81,7 +86,7 @@ export const getCurrentUser = async () => {
 
 // API call to update account settings
 export const updateAccountSettings = async (formData: FormData) => {
-  const result = await getApiData<ApiResult<CurrentUser>>({
+  const result = await getApiData<ApiResult<CurrentUser | undefined>>({
     url: "users/updateMe",
     withCredentials: true,
     data: formData,
@@ -97,7 +102,7 @@ export const updateAccountSettings = async (formData: FormData) => {
 
 export const updatePassword = async (data: PasswordUpdate) => {
 
-  const result = await getApiData<ApiResult<CurrentUser>>({
+  const result = await getApiData<ApiResult<CurrentUser | undefined>>({
     url: "users/updateMyPassword",
     withCredentials: true,
     data: JSON.stringify(data),
@@ -113,7 +118,7 @@ export const updatePassword = async (data: PasswordUpdate) => {
 
 export const logout = async () => {
 
-  const result = await getApiData<ApiResult<null>>({
+  const result = await getApiData<ApiResult<undefined>>({
     url: "users/logout",
     withCredentials: true,
     headers: {
@@ -125,7 +130,7 @@ export const logout = async () => {
 }
 
 export const getMyTours = async () => {
-  const result = await getApiData<ApiResult<Tour[]>>({
+  const result = await getApiData<ApiResult<Tour[] | undefined>>({
     url: 'bookings/my-tours',
     withCredentials: true,
     headers: {

@@ -16,6 +16,9 @@
 @use './components/auth';
 @use './components/profile/profile';
 @use './components/profile/profilesettings';
+@use './components/common/forminput';
+@use './components/common/notification';
+@use './components/notfoundpage';
 
 @use './colors' as *;
 

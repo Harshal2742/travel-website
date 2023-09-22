@@ -3,10 +3,14 @@ import { setCurrentUserLoginData, toggleModal } from '../store/auth-slice';
 import { useAppDispatch, useAppSelector } from '../store/store';
 import { signIn } from '../api/api';
 import { SignInApiData } from '../api/api.interface';
+import { LabeledInput } from './common/FormInput';
+import { toggleNotification } from '../store/ui-slice';
 
 const Auth = (): JSX.Element => {
 	const dispatch = useAppDispatch();
 	const showLoginModal = useAppSelector((state) => state.auth.showLoginModal);
+	const [isPasswordInvalid, setIsPasswordInvalid] = useState(false);
+	const [isEmailInvalid, setIsEmailInvalid] = useState(false);
 
 	const [formData, setFormData] = useState<SignInApiData>({
 		email: '',
@@ -14,13 +18,53 @@ const Auth = (): JSX.Element => {
 	});
 
 	const onLogin = async () => {
-		const result = await signIn(formData);
-		if (result.status == 'success' && result.data) {
-			localStorage.setItem('travel-token', result.token || '');
+		let emailInvalid = false;
+		let passwordInvalid = false;
+
+		if (!formData.email.includes('@') || formData.email.trim().length === 0) {
+			emailInvalid = true;
+		}
+
+		if (formData.password.trim().length < 8) {
+			passwordInvalid = true;
+		}
+
+		setIsEmailInvalid(emailInvalid);
+		setIsPasswordInvalid(passwordInvalid);
+
+		if (passwordInvalid || emailInvalid) {
+			return;
+		}
+
+		try {
+			const result = await signIn(formData);
+			if (result.status == 'success' && result.data) {
+				localStorage.setItem('travel-token', result.token || '');
+				dispatch(
+					setCurrentUserLoginData({
+						isLoggedIn: true,
+						currentUser: result.data,
+					})
+				);
+				dispatch(toggleModal());
+			} else {
+				dispatch(
+					toggleNotification({
+						showNotification: true,
+						isSuccess: false,
+						message: result.message,
+					})
+				);
+			}
+		} catch (e) {
+			console.log(e);
 			dispatch(
-				setCurrentUserLoginData({ isLoggedIn: true, currentUser: result.data })
+				toggleNotification({
+					showNotification: true,
+					isSuccess: false,
+					message: 'Something went wrong!',
+				})
 			);
-			dispatch(toggleModal());
 		}
 	};
 
@@ -49,44 +93,44 @@ const Auth = (): JSX.Element => {
 							onLogin();
 						}}
 					>
-						<div className="input-box">
-							<label htmlFor="email">Email</label>
-							<input
-								type="email"
-								id="email"
-								placeholder="example@gmail.com"
-								autoComplete="on"
-								onChange={(e) => {
-									setFormData((prevData) => {
-										return { ...prevData, email: e.target.value };
-									});
-								}}
-							/>
-						</div>
-						<div className="input-box">
-							<label htmlFor="password">Password</label>
-							<input
+						<LabeledInput
+							label={'Email'}
+							type="email"
+							id="email"
+							placeholder="example@gmail.com"
+							onChange={(e) => {
+								setFormData((prevData) => {
+									return { ...prevData, email: e.target.value };
+								});
+							}}
+							value={formData.email}
+							isInvalid={isEmailInvalid}
+						/>
+
+						<LabeledInput
+							label="Password"
+							type="password"
+							id="password"
+							placeholder="&bull; &bull; &bull; &bull; &bull; &bull; &bull; &bull;"
+							autoComplete="off"
+							value={formData.password}
+							isInvalid={isPasswordInvalid}
+							onChange={(e) => {
+								setFormData((prevData) => {
+									return { ...prevData, password: e.target.value };
+								});
+							}}
+						/>
+
+						{!showLoginModal && (
+							<LabeledInput
+								label={'Confirm password'}
 								type="password"
-								id="password"
+								id="confirmPassword"
 								placeholder="&bull; &bull; &bull; &bull; &bull; &bull; &bull; &bull;"
 								autoComplete="off"
-								onChange={(e) => {
-									setFormData((prevData) => {
-										return { ...prevData, password: e.target.value };
-									});
-								}}
+								onChange={(e) => {}}
 							/>
-						</div>
-						{!showLoginModal && (
-							<div className="input-box">
-								<label htmlFor="password">Confirm password</label>
-								<input
-									type="password"
-									id="confirmPassword"
-									placeholder="&bull; &bull; &bull; &bull; &bull; &bull; &bull; &bull;"
-									autoComplete="off"
-								/>
-							</div>
 						)}
 						<button className="btn-filled">Submit</button>
 					</form>
