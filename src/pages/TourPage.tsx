@@ -9,6 +9,7 @@ import { HiOutlineLocationMarker } from 'react-icons/hi';
 import ReviewCard from '../components/common/ReviewCard';
 import { useAppDispatch, useAppSelector } from '../store/store';
 import { toggleModal } from '../store/auth-slice';
+import HorizonalScrollBox from '../components/common/HorizontalScrollBox';
 
 const TourPage = (): JSX.Element => {
 	const { tourId } = useParams();
@@ -123,15 +124,15 @@ const TourPage = (): JSX.Element => {
 							})}
 						</section>
 						<section className="review-section">
-							<div className="review-container">
+							<HorizonalScrollBox className='review-container'>
 								{tour.reviews.map((review) => {
 									const updateReview = { ...review };
 									const newImgSrc =
 										import.meta.env.VITE_USER_IMG_BASE_URL + review.user.photo;
 									updateReview.user.photo = newImgSrc;
-									return <ReviewCard {...updateReview} />;
+									return <ReviewCard key={review.id} {...updateReview} />;
 								})}
-							</div>
+							</HorizonalScrollBox>
 						</section>
 						<section className="book-tour-section">
 							<div className="book-tour-card">
