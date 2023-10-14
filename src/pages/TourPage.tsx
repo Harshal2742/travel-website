@@ -124,13 +124,10 @@ const TourPage = (): JSX.Element => {
 							})}
 						</section>
 						<section className="review-section">
-							<HorizonalScrollBox className='review-container'>
+							<HorizonalScrollBox className="review-container">
 								{tour.reviews.map((review) => {
-									const updateReview = { ...review };
-									const newImgSrc =
-										import.meta.env.VITE_USER_IMG_BASE_URL + review.user.photo;
-									updateReview.user.photo = newImgSrc;
-									return <ReviewCard key={review.id} {...updateReview} />;
+									review.fromServer = true;
+									return <ReviewCard key={review.id} {...review} />;
 								})}
 							</HorizonalScrollBox>
 						</section>

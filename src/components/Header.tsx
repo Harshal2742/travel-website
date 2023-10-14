@@ -1,9 +1,4 @@
-import {
-	NavLink,
-	useLocation,
-	useNavigate,
-	useNavigation,
-} from 'react-router-dom';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../store/store';
 import { toggleModal } from '../store/auth-slice';
 

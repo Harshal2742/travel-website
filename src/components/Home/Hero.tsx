@@ -1,4 +1,8 @@
+import { useNavigate, useNavigation } from 'react-router-dom';
+
 const Hero = (): JSX.Element => {
+	const navigation = useNavigate();
+
 	return (
 		<section className="section-hero">
 			<div className="hero-img-box">
@@ -13,9 +17,14 @@ const Hero = (): JSX.Element => {
 					error modi dolores magni. Lorem, ipsum dolor sit amet consectetur
 					adipisicing elit.
 				</p>
-        <button className="btn-filled" >
-          Start exploring now
-        </button>
+				<button
+					className="btn-filled"
+					onClick={() => {
+						navigation('/all-tours');
+					}}
+				>
+					Start exploring now
+				</button>
 			</div>
 		</section>
 	);

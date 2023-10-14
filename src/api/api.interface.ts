@@ -1,5 +1,5 @@
 
-export interface ApiResult<T>{
+export interface ApiResult<T> {
   status: 'success' | 'fail' | 'error';
   data?: T;
   error?: Error;
@@ -65,6 +65,7 @@ export interface Review {
   user: User;
   __v: number;
   id: string;
+  fromServer?: boolean
 }
 
 export interface User {
